@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/joho/godotenv"
 )
 
@@ -41,4 +42,32 @@ func getEnv(key, defaultValue string) string {
 		return value
 	}
 	return defaultValue
+}
+
+
+// Validator instance
+var Validate = validator.New()
+
+// ValidationError stores error details
+type ValidationError struct {
+	Field string `json:"field"`
+	Tag   string `json:"tag"`
+	Value string `json:"value"`
+}
+
+// ValidateStruct checks struct fields based on tags
+func ValidateStruct(s interface{}) []*ValidationError {
+	var errors []*ValidationError
+	err := Validate.Struct(s)
+	if err != nil {
+		for _, err := range err.(validator.ValidationErrors) {
+			element := ValidationError{
+				Field: err.Field(),
+				Tag:   err.Tag(),
+				Value: err.Param(),
+			}
+			errors = append(errors, &element)
+		}
+	}
+	return errors
 }

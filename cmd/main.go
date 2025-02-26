@@ -6,6 +6,8 @@ import (
 
 	"fiberpress-api/config"   // Import config package
 	"fiberpress-api/database" // Import database package
+	"fiberpress-api/middleware"
+	"fiberpress-api/routes"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -19,6 +21,13 @@ func main() {
 
 	// Connect to MongoDB
 	database.ConnectDB()
+
+	// Use global middleware
+	app.Use(middleware.LoggerMiddleware) // Logging
+	// app.Use(middleware.AuthMiddleware)   // Authentication (apply globally if needed)
+
+	// Register Routes
+	routes.AuthRoutes(app) // Register authentication routes
 
 	// Define a test route
 	app.Get("/", func(c *fiber.Ctx) error {
