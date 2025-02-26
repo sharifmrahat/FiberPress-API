@@ -2,10 +2,14 @@
 
 FiberPress is a simple and efficient **blog API** built using **Golang** with the Fiber framework and MongoDB as the database.
 
-## **API URL**
+## **API URLs**
 
 ```
 Base URL:
+```
+
+```
+API Docs:
 ```
 
 ## **Tech Stack**
