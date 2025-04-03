@@ -43,9 +43,8 @@ func RegisterHandler(c *fiber.Ctx) error {
 
 	// Set user properties
 	user.ID = primitive.NewObjectID()
-	if user.Role == "" {
-		user.Role = "author" // Default role
-	}
+
+	user.Role = "author"
 	user.IsActive = true
 	user.IsDeleted = false
 	user.CreatedAt = time.Now()
