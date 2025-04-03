@@ -53,9 +53,8 @@ func AuthMiddleware(requiredRole string) fiber.Handler {
 		}
 
 		// Store user ID and role in locals for later use
-		c.Locals("userId", claims["userId"])
+		c.Locals("userId", claims["id"])
 		c.Locals("role", role)
-
 
 
 		// Check if the user has the required role

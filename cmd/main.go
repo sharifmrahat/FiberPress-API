@@ -28,6 +28,7 @@ func main() {
 
 	// Register Routes
 	routes.AuthRoutes(app) // Register authentication routes
+	routes.UserRoutes(app) // Register user routes
 
 	// Define a test route
 	app.Get("/", func(c *fiber.Ctx) error {

@@ -11,6 +11,7 @@ type User struct {
 	Name            string               `bson:"name" json:"name" validate:"required,min=3,max=50"`
 	Email           string               `bson:"email" json:"email" validate:"required,email"`
 	Password        string               `bson:"password" json:"password" validate:"required,min=8"`
+	Phone           string               `bson:"phone,omitempty" json:"phone,omitempty"` // Optional
 	Role            string               `bson:"role" json:"role" validate:"required,oneof=admin author"`
 	Posts           []primitive.ObjectID `bson:"posts,omitempty" json:"posts"`
 	IsVerified      bool                 `bson:"isVerified" json:"isVerified"`
@@ -19,4 +20,10 @@ type User struct {
 	IsDeleted       bool                 `bson:"isDeleted" json:"isDeleted"`
 	CreatedAt       time.Time            `bson:"createdAt,omitempty" json:"createdAt"`
 	UpdatedAt       time.Time            `bson:"updatedAt,omitempty" json:"updatedAt"`
+}
+
+
+type UpdateProfile struct {
+	Name  string `bson:"name" json:"name" validate:"required,min=3,max=50"`
+	Phone string `bson:"phone,omitempty" json:"phone,omitempty"` // Optional
 }
