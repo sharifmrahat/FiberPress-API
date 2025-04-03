@@ -10,3 +10,9 @@ type Register struct {
 	Email           string               `bson:"email" json:"email" validate:"required,email"`
 	Password        string               `bson:"password" json:"password" validate:"required,min=8"`
 }
+
+type MakeAdmin struct {
+	Name            string               `bson:"name" json:"name" validate:"required,min=3,max=50"`
+	Email           string               `bson:"email" json:"email" validate:"required,email"`
+	Password        string               `bson:"password" json:"password" validate:"required,min=8"`
+}
